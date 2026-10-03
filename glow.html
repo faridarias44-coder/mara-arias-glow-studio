@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mara Arias Glow Studio | Estética & Belleza</title>
+
+    <link rel="icon" href="icono.jpg" type="image/png">
+    
+    <!-- ESTE ES EL ICONO DE LA PESTAÑA (FAVICON) -->
+    <!-- Reemplaza 'tu-icono.png' con la ruta real de la imagen de tu hermana -->
+    
+    <link rel="icon" type="image/png" href="tu-icono.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'glow-primary': '#d4af37', /* Gold */
+                        'glow-secondary': '#fdfbf7', /* Off-white / Cream */
+                        'glow-dark': '#2c2c2c',
+                        'glow-accent': '#e8d5c4', /* Soft blush/nude */
+                    },
+                    fontFamily: {
+                        'serif': ['"Playfair Display"', 'serif'],
+                        'sans': ['Poppins', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Poppins', sans-serif; background-color: #fdfbf7; color: #2c2c2c; overflow-x: hidden; }
+        h1, h2, h3, h4, .font-serif { font-family: '"Playfair Display"', serif; }
+        
+        .glass-nav {
+            background: rgba(253, 251, 247, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .service-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(212, 175, 55, 0.15), 0 10px 10px -5px rgba(212, 175, 55, 0.04);
+        }
+        
+        .hero-pattern {
+            background-image: url('https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80'); /* Abstract soft background */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(253, 251, 247, 0.95) 0%, rgba(253, 251, 247, 0.7) 100%);
+        }
+
+        .btn-glow {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .btn-glow::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: rgba(255,255,255,0.1);
+            transform: translate(-50%, -50%) rotate(35deg) scale(0);
+            transition: transform 0.5s ease;
+        }
+        .btn-glow:hover::after {
+            transform: translate(-50%, -50%) rotate(35deg) scale(1);
+        }
+
+        /* Reveal animations on scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .social-float {
+            animation: float 4s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <div class="text-center leading-tight">
+                        <span class="font-serif text-2xl font-bold tracking-wider text-glow-primary block">MARA ARIAS</span>
+                        <span class="font-sans text-xs tracking-[0.3em] text-glow-dark font-light uppercase">Glow Studio</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#inicio" class="text-glow-dark hover:text-glow-primary transition-colors text-sm font-medium tracking-wide uppercase">Inicio</a>
+                    <a href="#servicios" class="text-glow-dark hover:text-glow-primary transition-colors text-sm font-medium tracking-wide uppercase">Servicios</a>
+                    <a href="#precios" class="text-glow-dark hover:text-glow-primary transition-colors text-sm font-medium tracking-wide uppercase">Precios</a>
+                    <a href="#nosotros" class="text-glow-dark hover:text-glow-primary transition-colors text-sm font-medium tracking-wide uppercase">Sobre Mí</a>
+                    <a href="#contacto" class="text-glow-dark hover:text-glow-primary transition-colors text-sm font-medium tracking-wide uppercase">Contacto</a>
+                    <a href="#contacto" class="bg-glow-primary text-white px-6 py-2 rounded-full text-sm font-semibold hover:bg-yellow-600 transition-all shadow-md hover:shadow-lg btn-glow">Reservar Cita</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-glow-dark hover:text-glow-primary focus:outline-none p-2">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
+                <a href="#inicio" class="block px-3 py-3 text-glow-dark hover:text-glow-primary font-medium mobile-link">Inicio</a>
+                <a href="#servicios" class="block px-3 py-3 text-glow-dark hover:text-glow-primary font-medium mobile-link">Servicios</a>
+                <a href="#precios" class="block px-3 py-3 text-glow-dark hover:text-glow-primary font-medium mobile-link">Precios</a>
+                <a href="#nosotros" class="block px-3 py-3 text-glow-dark hover:text-glow-primary font-medium mobile-link">Sobre Mí</a>
+                <a href="#contacto" class="block px-3 py-3 text-glow-dark hover:text-glow-primary font-medium mobile-link">Contacto</a>
+                <a href="#contacto" class="block px-3 py-3 mt-4 mx-4 bg-glow-primary text-white rounded-full font-medium mobile-link shadow-md">Reservar Cita</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero-pattern min-h-screen flex items-center pt-20">
+        <div class="hero-overlay"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full flex flex-col md:flex-row items-center">
+            
+            <div class="w-full md:w-1/2 text-left md:pr-10 pt-10 md:pt-0 animate-fade-in-up">
+                <p class="text-glow-primary font-semibold tracking-[0.2em] uppercase text-sm mb-4">Bienvenida a tu mejor versión</p>
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-serif font-bold text-glow-dark leading-tight mb-6">
+                    Descubre tu <br>
+                    <span class="text-glow-primary italic font-normal">brillo natural</span>
+                </h1>
+                <p class="text-gray-600 text-lg mb-8 max-w-lg font-light leading-relaxed">
+                    Especialistas en el cuidado del rostro, masajes relajantes, diseño de cejas y depilaciones. Un espacio diseñado para tu bienestar y belleza.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#contacto" class="bg-glow-primary text-white text-center px-8 py-3 rounded-full font-semibold hover:bg-yellow-600 transition-all shadow-lg btn-glow inline-flex items-center justify-center">
+                        Agenda tu cita <i class="fas fa-calendar-alt ml-2"></i>
+                    </a>
+                    <a href="#servicios" class="border border-glow-primary text-glow-primary text-center px-8 py-3 rounded-full font-semibold hover:bg-glow-primary hover:text-white transition-all inline-flex items-center justify-center">
+                        Ver Servicios
+                    </a>
+                </div>
+            </div>
+
+            <!-- Hero Image/Visual -->
+            <div class="w-full md:w-1/2 mt-12 md:mt-0 relative hidden md:block">
+                <div class="absolute inset-0 bg-glow-accent rounded-full opacity-20 filter blur-3xl animate-pulse-slow"></div>
+                <img src="https://images.unsplash.com/photo-1615397323145-8fd18182998a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                     alt="Tratamiento Facial Spa" 
+                     class="relative z-10 rounded-t-full rounded-b-3xl shadow-2xl border-4 border-white mx-auto max-w-md w-full object-cover h-[600px]"
+                     onerror="this.src='https://placehold.co/600x800/e8d5c4/d4af37?text=Glow+Studio'">
+                
+                <!-- Floating Badge -->
+                <div class="absolute bottom-10 -left-10 bg-white p-4 rounded-2xl shadow-xl z-20 flex items-center gap-3 social-float">
+                    <div class="bg-green-100 p-2 rounded-full">
+                        <i class="fab fa-whatsapp text-green-500 text-xl"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-500 font-medium">Atención Personalizada</p>
+                        <p class="text-sm font-bold text-glow-dark">¡Escríbeme!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicios" class="py-24 bg-white relative">
+        <!-- Decorative element -->
+        <div class="absolute top-0 right-0 w-64 h-64 bg-glow-accent rounded-bl-full opacity-20"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-serif text-4xl md:text-5xl text-glow-dark mb-4">Nuestros <span class="text-glow-primary italic">Servicios</span></h2>
+                <div class="w-24 h-1 bg-glow-primary mx-auto rounded-full mb-4"></div>
+                <p class="text-gray-500 max-w-2xl mx-auto">Tratamientos personalizados diseñados para resaltar tu belleza natural y brindarte momentos de pura relajación.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Service 1: Cuidado Facial -->
+                <div class="bg-glow-secondary p-8 rounded-3xl service-card border border-gray-100 reveal text-center group">
+                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-md text-glow-primary group-hover:bg-glow-primary group-hover:text-white transition-colors duration-300">
+                        <i class="fas fa-spa text-2xl"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold mb-3 text-glow-dark">Cuidado del Rostro</h3>
+                    <p class="text-gray-600 text-sm mb-6 leading-relaxed">
+                        Limpiezas faciales profundas, hidratación, dermaplaning y tratamientos anti-edad para una piel radiante.
+                    </p>
+                    <ul class="text-left text-sm text-gray-500 space-y-2 mb-6 border-t border-gray-200 pt-4">
+                        <li><i class="fas fa-check text-glow-primary mr-2 text-xs"></i> Limpieza Profunda</li>
+                        <li><i class="fas fa-check text-glow-primary mr-2 text-xs"></i> Tratamientos Acné</li>
+                        <li><i class="fas fa-check text-glow-primary mr-2 text-xs"></i> Efecto Glow Inmediato</li>
+                    </ul>
+                </div>
+
+                <!-- Service 2: Masajes -->
+                <div class="bg-glow-secondary p-8 rounded-3xl service-card border border-gray-100 reveal text-center group" style="transition-delay: 100ms;">
+                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-md text-glow-primary group-hover:bg-glow-primary group-hover:text-white transition-colors duration-300">
+                        <i class="fas fa-hands text-2xl"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold mb-3 text-glow-dark">Masajes</h3>
+                    <p class="text-gray-600 text-sm mb-6 leading-relaxed">
+                        Desconecta cuerpo y mente. Masajes relajantes, descontracturantes y drenaje linfático facial y corporal.
+                    </p>
+                    <ul class="text-left text-sm text-gray-500 space-y-2 mb-6 border-t border-gray-200 pt-4">
+                        <li><i class="fas fa-check text-glow-primary mr-2 text-xs"></i> Relajante Integral</li>
+                        <li><i class="fas fa-check text-glow-primary mr-2 text-xs"></i> Piedras Calientes</li>
+                        <li><i class="fas fa-check text-glow-primary mr-2 text-xs"></i> Drenaje Linfático</li>
+                    </ul>
+                </div>
+
+                <!-- Service 3: Cejas -->
+                <div class="bg-glow-secondary p-8 rounded-3xl service-card border border-gray-100 reveal text-center group" style="transition-delay: 200ms;">
+                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-md text-glow-primary group-hover:bg-glow-primary group-hover:text-white transition-colors duration-300">
+                        <i class="fas fa-eye text-2xl"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold mb-3 text-glow-dark">Diseño de Cejas</h3>
+                    <p class="text-gray-600 text-sm mb-6 leading-relaxed">
+                        Enmarca tu mirada. Visagismo, perfilado, laminado y aplicación de henna para unas cejas perfectas.
+                    </p>
+                    <ul class="text-left text-sm text-gray-500 space-y-2 mb-6 border-t border-gray-200 pt-4">
+                        <li><i class="fas fa-check text-glow-primary mr-2 text-xs"></i> Perfilado & Visagismo</li>
+                        <li><i class="fas fa-check text-glow-primary mr-2 text-xs"></i> Laminado de Cejas</li>
+                        <li><i class="fas fa-check text-glow-primary mr-2 text-xs"></i> Tinte / Henna</li>
+                    </ul>
+                </div>
+
+                <!-- Service 4: Depilación -->
+                <div class="bg-glow-secondary p-8 rounded-3xl service-card border border-gray-100 reveal text-center group" style="transition-delay: 300ms;">
+                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-md text-glow-primary group-hover:bg-glow-primary group-hover:text-white transition-colors duration-300">
+                        <i class="fas fa-leaf text-2xl"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold mb-3 text-glow-dark">Depilaciones</h3>
+                    <p class="text-gray-600 text-sm mb-6 leading-relaxed">
+                        Piel suave por más tiempo. Técnicas cuidadosas con ceras especiales para zonas sensibles del rostro y cuerpo.
+                    </p>
+                    <ul class="text-left text-sm text-gray-500 space-y-2 mb-6 border-t border-gray-200 pt-4">
+                        <li><i class="fas fa-check text-glow-primary mr-2 text-xs"></i> Depilación Facial</li>
+                        <li><i class="fas fa-check text-glow-primary mr-2 text-xs"></i> Depilación Corporal</li>
+                        <li><i class="fas fa-check text-glow-primary mr-2 text-xs"></i> Cuidado Post-depilación</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="precios" class="py-24 bg-glow-secondary relative">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-serif text-4xl md:text-5xl text-glow-dark mb-4">Nuestros <span class="text-glow-primary italic">Precios</span></h2>
+                <div class="w-24 h-1 bg-glow-primary mx-auto rounded-full mb-4"></div>
+                <p class="text-gray-500 max-w-2xl mx-auto">Invierte en ti. Aquí tienes nuestro menú de servicios detallado.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 reveal">
+                
+                <!-- Categoría 1: Rostro y Pestañas -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
+                    <h3 class="font-serif text-2xl text-glow-primary border-b border-gray-100 pb-4 mb-6 flex items-center gap-3">
+                        <i class="fas fa-spa"></i> Rostro & Mirada
+                    </h3>
+                    <ul class="space-y-4">
+                        <li class="flex justify-between items-end">
+                            <span class="text-gray-700 font-medium">Limpieza facial</span>
+                            <span class="font-serif font-bold text-glow-dark">$ 80.000</span>
+                        </li>
+                        <li class="flex justify-between items-end border-t border-gray-50 pt-4">
+                            <span class="text-gray-700 font-medium">Pestañas Punto a Punto</span>
+                            <span class="font-serif font-bold text-glow-dark">$ 25.000</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Categoría 2: Cejas -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
+                    <h3 class="font-serif text-2xl text-glow-primary border-b border-gray-100 pb-4 mb-6 flex items-center gap-3">
+                        <i class="fas fa-eye"></i> Diseño de Cejas
+                    </h3>
+                    <ul class="space-y-4">
+                        <li class="flex justify-between items-end">
+                            <span class="text-gray-700 font-medium pr-4">Diseño & Cejas Semipermanente (Con Cera)</span>
+                            <span class="font-serif font-bold text-glow-dark whitespace-nowrap">$ 25.000</span>
+                        </li>
+                        <li class="flex justify-between items-end border-t border-gray-50 pt-4">
+                            <span class="text-gray-700 font-medium pr-4">Diseño & Cejas Semipermanente (Con Cuchilla)</span>
+                            <span class="font-serif font-bold text-glow-dark whitespace-nowrap">$ 20.000</span>
+                        </li>
+                        <li class="flex justify-between items-end border-t border-gray-50 pt-4">
+                            <span class="text-gray-700 font-medium pr-4">Epilación con cera + Diseño de cejas</span>
+                            <span class="font-serif font-bold text-glow-dark whitespace-nowrap">$ 10.000</span>
+                        </li>
+                        <li class="flex justify-between items-end border-t border-gray-50 pt-4">
+                            <span class="text-gray-700 font-medium pr-4">Depilación de cejas con cuchilla</span>
+                            <span class="font-serif font-bold text-glow-dark whitespace-nowrap">$ 5.000</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Categoría 3: Epilación Corporal -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
+                    <h3 class="font-serif text-2xl text-glow-primary border-b border-gray-100 pb-4 mb-6 flex items-center gap-3">
+                        <i class="fas fa-leaf"></i> Epilación Corporal (Cera)
+                    </h3>
+                    <ul class="space-y-4">
+                        <li class="flex justify-between items-end">
+                            <span class="text-gray-700 font-medium">Pierna Completa</span>
+                            <span class="font-serif font-bold text-glow-dark">$ 60.000</span>
+                        </li>
+                        <li class="flex justify-between items-end border-t border-gray-50 pt-4">
+                            <span class="text-gray-700 font-medium">Bikini Spa</span>
+                            <span class="font-serif font-bold text-glow-dark">$ 50.000</span>
+                        </li>
+                        <li class="flex justify-between items-end border-t border-gray-50 pt-4">
+                            <span class="text-gray-700 font-medium">Media Pierna</span>
+                            <span class="font-serif font-bold text-glow-dark">$ 40.000</span>
+                        </li>
+                        <li class="flex justify-between items-end border-t border-gray-50 pt-4">
+                            <span class="text-gray-700 font-medium">Axilas</span>
+                            <span class="font-serif font-bold text-glow-dark">$ 10.000</span>
+                        </li>
+                        <li class="flex justify-between items-end border-t border-gray-50 pt-4">
+                            <span class="text-gray-700 font-medium">Bozo</span>
+                            <span class="font-serif font-bold text-glow-dark">$ 6.000</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Categoría 4: Masajes -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
+                    <h3 class="font-serif text-2xl text-glow-primary border-b border-gray-100 pb-4 mb-6 flex items-center gap-3">
+                        <i class="fas fa-hands"></i> Masajes Relajantes
+                    </h3>
+                    <ul class="space-y-4">
+                        <li class="flex justify-between items-end">
+                            <span class="text-gray-700 font-medium">Masaje Relajante Completo</span>
+                            <span class="font-serif font-bold text-glow-dark">$ 100.000</span>
+                        </li>
+                        <li class="flex justify-between items-end border-t border-gray-50 pt-4">
+                            <span class="text-gray-700 font-medium">Masaje Relajante Localizado</span>
+                            <span class="font-serif font-bold text-glow-dark">$ 50.000</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            
+            <div class="text-center mt-12 reveal">
+                <a href="#contacto" class="bg-glow-primary text-white px-8 py-3 rounded-full font-semibold hover:bg-yellow-600 transition-all shadow-lg btn-glow inline-flex items-center justify-center">
+                    Agenda tu cita ahora <i class="fas fa-calendar-check ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="nosotros" class="py-24 bg-glow-secondary relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                
+                <!-- Image Grid -->
+                <div class="w-full lg:w-1/2 relative reveal">
+                    <div class="grid grid-cols-2 gap-4">
+                        <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Facial Massage" class="rounded-tl-3xl rounded-br-3xl w-full h-64 object-cover shadow-lg mt-8">
+                        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Brows" class="rounded-tr-3xl rounded-bl-3xl w-full h-64 object-cover shadow-lg">
+                    </div>
+                    <!-- Decorative Circle -->
+                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-glow-primary rounded-full mix-blend-multiply opacity-20 filter blur-xl"></div>
+                </div>
+
+                <!-- Text Content -->
+                <div class="w-full lg:w-1/2 reveal">
+                    <h2 class="font-serif text-3xl md:text-4xl text-glow-dark mb-2">Conoce a <span class="text-glow-primary">Mara Arias</span></h2>
+                    <h3 class="text-xl font-light italic text-gray-500 mb-6 font-serif">El alma detrás de Glow Studio</h3>
+                    
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Soy una apasionada por el cuidado personal y la estética. Mi objetivo en <strong>Mara Arias Glow Studio</strong> no es solo ofrecer tratamientos, sino crear un refugio donde puedas relajarte, desconectar del estrés diario y reconectar con tu belleza única.
+                    </p>
+                    <p class="text-gray-600 mb-8 leading-relaxed">
+                        Trabajo con productos de alta calidad y técnicas actualizadas en cuidado facial, visagismo y masoterapia para garantizarte resultados visibles y una experiencia inigualable. Tu piel y tu bienestar están en las mejores manos.
+                    </p>
+
+                    <!-- Stats/Features -->
+                    <div class="grid grid-cols-2 gap-6 mb-8">
+                        <div>
+                            <p class="text-3xl font-serif font-bold text-glow-primary mb-1">100%</p>
+                            <p class="text-sm text-gray-500 font-medium">Atención Personalizada</p>
+                        </div>
+                        <div>
+                            <p class="text-3xl font-serif font-bold text-glow-primary mb-1"><i class="fas fa-star text-2xl"></i></p>
+                            <p class="text-sm text-gray-500 font-medium">Productos Premium</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center gap-4">
+                        <a href="https://www.instagram.com/maraarias_glowstudio/" target="_blank" class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-glow-dark shadow-md hover:bg-glow-primary hover:text-white transition-all">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <span class="text-sm font-medium text-gray-500">Sígueme para tips y resultados reales</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Promo Section -->
+    <section class="py-20 bg-glow-primary relative overflow-hidden">
+        <!-- Abstract shapes -->
+        <div class="absolute top-0 right-0 w-full h-full opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCI+PHBhdGggZD0iTTkuNiAyOS42bDEwLjQtMTAuNCAxMC40IDEwLjRMNTIuOCAxMiAyOS42LTEuMiAxMiA1LjJ6bTM5LjIgMzEuMkw1OS4yIDUwLjQgNDguOCA0MCA4IDgwSDBsMzguNC0zOC40em0yMC00MGwyLjYgMi42TDY5LjYgMjQuMmw3LjYtNy42LTQuOC00LjgtNy42IDcuNnoiIGZpbGw9IiNmZmZmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg==')]"></div>
+        
+        <div class="max-w-4xl mx-auto px-4 relative z-10 text-center reveal">
+            <h2 class="font-serif text-3xl md:text-5xl text-white mb-6">¡Únete a la comunidad Glow! ✨</h2>
+            <p class="text-white/90 text-lg mb-10 max-w-2xl mx-auto font-light">
+                Descubre el antes y después de nuestros tratamientos, participa en sorteos exclusivos y recibe consejos de cuidado facial diarios en nuestras redes.
+            </p>
+            
+            <div class="flex flex-wrap justify-center gap-6">
+                <!-- Instagram Button -->
+                <a href="https://www.instagram.com/maraarias_glowstudio/" target="_blank" class="group bg-white flex items-center gap-4 px-6 py-4 rounded-2xl shadow-xl hover:-translate-y-2 transition-all duration-300 w-full sm:w-auto">
+                    <div class="bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-500 w-12 h-12 rounded-xl flex items-center justify-center text-white">
+                        <i class="fab fa-instagram text-2xl"></i>
+                    </div>
+                    <div class="text-left">
+                        <p class="text-xs text-gray-500 font-bold uppercase tracking-wider">Síguenos en</p>
+                        <p class="font-serif font-bold text-glow-dark text-lg group-hover:text-glow-primary transition-colors">@maraarias_glowstudio</p>
+                    </div>
+                </a>
+
+                <!-- TikTok Button -->
+                <a href="https://www.tiktok.com/@maraarias31" target="_blank" class="group bg-white flex items-center gap-4 px-6 py-4 rounded-2xl shadow-xl hover:-translate-y-2 transition-all duration-300 w-full sm:w-auto">
+                    <div class="bg-black w-12 h-12 rounded-xl flex items-center justify-center text-white">
+                        <i class="fab fa-tiktok text-xl"></i>
+                    </div>
+                    <div class="text-left">
+                        <p class="text-xs text-gray-500 font-bold uppercase tracking-wider">Videos y Tips</p>
+                        <p class="font-serif font-bold text-glow-dark text-lg group-hover:text-glow-primary transition-colors">@maraarias31</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Booking Section -->
+    <section id="contacto" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-glow-secondary rounded-[2.5rem] p-8 md:p-16 shadow-lg border border-gray-100 reveal">
+                <div class="flex flex-col lg:flex-row gap-12">
+                    
+                    <!-- Contact Info -->
+                    <div class="w-full lg:w-5/12">
+                        <h2 class="font-serif text-3xl md:text-4xl text-glow-dark mb-4">Reserva tu <span class="text-glow-primary italic">Momento</span></h2>
+                        <p class="text-gray-600 mb-8">¿Lista para brillar? Contáctanos para agendar tu cita, consultar disponibilidad o resolver cualquier duda sobre nuestros tratamientos.</p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-full bg-white shadow flex items-center justify-center text-glow-primary shrink-0">
+                                    <i class="fab fa-whatsapp"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-500 font-medium">WhatsApp (Citas rápidas)</p>
+                                    <p class="font-semibold text-glow-dark text-lg">+57 313 798 4198</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-full bg-white shadow flex items-center justify-center text-glow-primary shrink-0">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-500 font-medium">Ubicación</p>
+                                    <p class="font-semibold text-glow-dark">Sincelejo, Sucre, Colombia</p>
+                                    <p class="text-xs text-gray-400 mt-1">Atención previa cita</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-full bg-white shadow flex items-center justify-center text-glow-primary shrink-0">
+                                    <i class="far fa-clock"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-500 font-medium">Horario de Atención</p>
+                                    <p class="font-semibold text-glow-dark">Lunes - Sábado</p>
+                                    <p class="text-xs text-gray-400 mt-1">9:00 AM - 7:00 PM</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Mock Booking Form -->
+                    <div class="w-full lg:w-7/12 bg-white p-8 rounded-3xl shadow-sm border border-gray-50">
+                        <h3 class="font-serif text-2xl text-glow-dark mb-6">Solicitud de Cita</h3>
+                        <form onsubmit="handleFormSubmit(event)" class="space-y-4">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Tu Nombre</label>
+                                    <input type="text" id="client-name" required class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-glow-primary focus:border-transparent transition-all" placeholder="Ej. Ana Pérez">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Teléfono</label>
+                                    <input type="tel" id="client-phone" required class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-glow-primary focus:border-transparent transition-all" placeholder="Tu número">
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Servicio de Interés</label>
+                                <select id="client-service" required class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-glow-primary text-gray-700 transition-all appearance-none cursor-pointer">
+                                    <option value="" disabled selected>Selecciona un servicio</option>
+                                    <option value="Limpieza Facial / Cuidado del Rostro">Limpieza Facial / Cuidado del Rostro</option>
+                                    <option value="Masaje Relajante / Descontracturante">Masaje Relajante / Descontracturante</option>
+                                    <option value="Diseño de Cejas / Laminado">Diseño de Cejas / Laminado</option>
+                                    <option value="Depilación">Depilación</option>
+                                    <option value="Paquete Completo Glow">Paquete Completo Glow</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Mensaje Adicional (Opcional)</label>
+                                <textarea id="client-msg" rows="3" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-glow-primary focus:border-transparent transition-all resize-none" placeholder="¿Día preferido? ¿Alguna condición de la piel?"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full bg-glow-dark text-white font-semibold rounded-xl px-6 py-4 mt-2 hover:bg-black transition-colors flex items-center justify-center gap-2">
+                                Enviar mensaje por WhatsApp <i class="fab fa-whatsapp text-lg text-green-400"></i>
+                            </button>
+                            <p class="text-xs text-center text-gray-400 mt-3">* Al enviar, se abrirá WhatsApp con los detalles de tu solicitud.</p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-glow-dark text-white pt-16 pb-8 border-t-4 border-glow-primary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center md:items-start gap-8 mb-12 border-b border-gray-700 pb-12">
+                
+                <div class="text-center md:text-left">
+                    <div class="text-2xl font-serif font-bold text-glow-primary mb-2">MARA ARIAS</div>
+                    <div class="text-xs tracking-[0.3em] font-light uppercase text-gray-400 mb-4">Glow Studio</div>
+                    <p class="text-gray-400 max-w-xs text-sm">Resaltando tu belleza natural a través de cuidados profesionales y dedicación.</p>
+                </div>
+
+                <div class="flex gap-4">
+                    <a href="https://www.instagram.com/maraarias_glowstudio/" target="_blank" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-glow-primary transition-colors">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@maraarias31" target="_blank" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-glow-primary transition-colors">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="text-center text-gray-500 text-xs">
+                <p>&copy; <span id="year"></span> Mara Arias Glow Studio. Todos los derechos reservados.</p>
+                <p class="mt-2 text-gray-600">Diseñado con amor para la belleza.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Set Current Year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-md');
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            } else {
+                navbar.classList.remove('shadow-md');
+                navbar.style.background = 'rgba(253, 251, 247, 0.85)';
+            }
+        });
+
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        const icon = btn.querySelector('i');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            if(menu.classList.contains('hidden')){
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            }
+        });
+
+        // Close mobile menu on link click
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+
+        // Scroll Reveal Animation
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); // Trigger on load
+
+        // Form Submit Handler (Real WhatsApp Redirection)
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            
+            // Collect form values
+            const name = document.getElementById('client-name').value.trim();
+            const phone = document.getElementById('client-phone').value.trim();
+            const service = document.getElementById('client-service').value;
+            const extraMsg = document.getElementById('client-msg').value.trim();
+            
+            // Target WhatsApp Number 
+            const whatsappNumber = "573137984198"; 
+            
+            // Format WhatsApp Message
+            let text = `¡Hola! 👋 Me gustaría agendar una cita en *Mara Arias Glow Studio*.\n\n`;
+            text += `*Nombre:* ${name}\n`;
+            text += `*Teléfono:* ${phone}\n`;
+            text += `*Servicio de interés:* ${service}\n`;
+            if(extraMsg) {
+                text += `*Detalles / Nota:* ${extraMsg}\n`;
+            }
+            
+            // Encode URI for URL
+            const encodedText = encodeURIComponent(text);
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedText}`;
+            
+            // Open WhatsApp in new tab / real environment
+            window.open(whatsappUrl, '_blank');
+        }
+    </script>
+</body>
+</html>
